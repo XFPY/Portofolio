@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="id">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Portofolio PPLG</title>
+          <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+          <link rel="stylesheet" href="css/style.css">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+          <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    </head>
+    <body>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Portofolio Adinata</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">Beranda</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="project.html">Project</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html#contact">Kontak</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="service.html">Layanan</a>
+                </li>
+            </ul>
+            <button id="theme-toggle" class="btn btn-secondary ml-auto">
+              <i class="fas fa-sun"></i> 
+          </button>
+        </div>
+    </nav>
+    
+    <!--Header-->
+    <header class="jumbotron text-center" style="padding: 0.5rem 0;">
+        <h1 style="font-size: 1.5rem;">Layanan Kami</h1>
+        <p style="font-size: 0.9rem;">Kami menawarkan berbagai layanan untuk memenuhi kebutuhan Anda.</p>
+    </header>
+
+    <!--Section layanan-->
+    <section class="container">
+        <h2 class="text-center">Pilih Layanan Anda</h2>
+        <form id="serviceForm">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card mb-4">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Pengembangan Web dengan Laravel</h5>
+                            <p class="card-text">Kami menyediakan layanan pengembangan aplikasi web yang aman, efisien, dan scalable menggunakan framework Laravel, disesuaikan dengan kebutuhan bisnis Anda.</p>
+                            <label class="custom-radio">
+                                <input type="radio" name="services" value="Pengembangan Web">
+                                <span class="checkmark" onclick="toggleService(this)"><i class="fas fa-laptop-code"></i></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card mb-4">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Pembuatan Portofolio Web</h5>
+                            <p class="card-text">Kami membantu Anda membuat portofolio online profesional dan responsif, menampilkan karya dan proyek dengan desain menarik yang mudah diakses di berbagai perangkat.</p>
+                            <label class="custom-radio">
+                                <input type="radio" name="services" value="Pembuatan Portofolio">
+                                <span class="checkmark" onclick="toggleService(this)"><i class="fas fa-mobile-alt"></i></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card mb-4">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Desain Web</h5>
+                            <p class="card-text">Kami menawarkan layanan desain web yang menarik dan responsif untuk meningkatkan kehadiran online Anda.</p>
+                            <label class="custom-radio">
+                                <input type="radio" name="services" value="Desain Web">
+                                <span class="checkmark" onclick="toggleService(this)"><i class="fas fa-paint-brush"></i></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button type="button" class="btn btn-primary" onclick="sendWhatsAppMessage()">Pesan Sekarang</button>
+        </form>
+    </section>
+
+    <!--Footer-->
+    <footer class="text-center footer-dark">
+        <p>&copy; 2025 Portofolio PPLG</p>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+    function sendWhatsAppMessage() {
+        const selectedService = document.querySelector('input[name="services"]:checked');
+        if (selectedService) {
+            const message = `Saya ingin memesan layanan: ${selectedService.value}`;
+            const phoneNumber = '6282145627438'; // Ganti dengan nomor WhatsApp Anda
+            const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+            window.open(url, '_blank');
+        } else {
+            alert('Silakan pilih salah satu layanan.');
+        }
+    }
+    </script>
+
+    <script>
+    function toggleService(element) {
+        const radioInput = element.previousElementSibling; // Ambil input radio
+        if (radioInput.checked) {
+            radioInput.checked = false; // Batalkan pilihan jika sudah terpilih
+            element.style.color = '#ccc'; // Kembalikan warna ikon
+        } else {
+            // Pilih radio button dan ubah warna ikon
+            const allRadios = document.querySelectorAll('input[name="services"]');
+            allRadios.forEach(radio => {
+                radio.checked = false; // Batalkan semua pilihan
+            });
+            radioInput.checked = true; // Pilih yang baru
+            const checkmarks = document.querySelectorAll('.checkmark');
+            checkmarks.forEach(checkmark => {
+                checkmark.style.color = '#ccc'; // Kembalikan warna semua ikon
+            });
+            element.style.color = '#007bff'; // Ubah warna ikon yang dipilih
+        }
+    }
+    </script>
+
+    <style>
+    .custom-radio {
+        display: inline-block;
+        cursor: pointer;
+        margin-right: 10px;
+    }
+
+    .custom-radio input {
+        display: none; /* Sembunyikan radio button asli */
+    }
+
+    .checkmark {
+        font-size: 24px; /* Ukuran ikon */
+        color: #ccc; /* Warna default */
+    }
+
+    .custom-radio input:checked + .checkmark {
+        color: #007bff; /* Warna saat dipilih */
+    }
+    </style>
+</body>
+</html> 
